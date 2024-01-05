@@ -19,6 +19,12 @@ public class DragonSlayer {
         ConsoleUtility.clearScreen();
         if (option == 1) {
             Menu();
+        } else if (option == 2) {
+
+        } else if (option == 3) {
+
+        } else if (option == 4) {
+
         }
     }
 
@@ -27,7 +33,7 @@ public class DragonSlayer {
         String name = SCANNER.nextLine();
         Player player = new Player(name);
         ConsoleUtility.clearScreen();
-        while (player.getHealth() > 0) {
+        while (player.getHealth() > 0 && Room.getRoomNumber() < 6) {
             System.out.println("--MENU--");
             System.out.println("1. Enter next room");
             System.out.println("2. Search room");
@@ -38,8 +44,13 @@ public class DragonSlayer {
             System.out.println("7. Upgrades and powerups");
             int option = SCANNER.nextInt();
             SCANNER.nextLine();
-            ConsoleUtility.clearScreen();
+            //ConsoleUtility.clearScreen();
             if (option == 6) {
+            } else if (option == 2) {
+            } else if (option == 3) {
+            } else if (option == 4) {
+            } else if (option == 5) {
+            } else if (option == 6) {
                 System.out.println(player.info());
             }
             //ConsoleUtility.clearScreen();

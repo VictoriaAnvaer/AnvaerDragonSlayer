@@ -12,9 +12,16 @@ public class Player {
         healthPot = false;
         sword = new Sword();
     }
+    public String getName() {
+        return name;
+    }
 
     public int getHealth() {
         return health;
+    }
+
+    public boolean setHealthPot(boolean ft) {
+        healthPot = ft;
     }
 
     public int attack() {
@@ -23,7 +30,7 @@ public class Player {
 
     public boolean recieveAttack(Dragon dragon) {
         if (((int) (Math.random() * 100 + 1)) > sword.getDodge()) {
-            dragon.attack();
+            health-=dragon.attack();
             return true;
         }
         return false;
@@ -33,7 +40,7 @@ public class Player {
         String info = "--PLAYER--\nName: " + name;
         info+="\nHealth: " + health;
         info+="\nGold: " + gold;
-        info+="\nHealthPot: " + healthPot;
+        info+="\nHealth Potion: " + healthPot;
         info+="\n--SWORD--\n";
         info+="Dodge: " + sword.getDodge();
         info+="\nAttack: " + sword.getAttack();
