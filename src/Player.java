@@ -19,8 +19,11 @@ public class Player {
     public int getHealth() {
         return health;
     }
+    public void addGold(int add) {
+        gold+=add;
+    }
 
-    public boolean setHealthPot(boolean ft) {
+    public void setHealthPot(boolean ft) {
         healthPot = ft;
     }
 
@@ -34,6 +37,9 @@ public class Player {
             return true;
         }
         return false;
+    }
+    public void playerMenu() {
+        System.out.println(name + "- health: " + health);
     }
 
     public String info() {

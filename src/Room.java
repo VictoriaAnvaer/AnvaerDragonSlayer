@@ -1,8 +1,7 @@
+//add room name
 public class Room {
     static int ROOM_NUMBER = 0;
-    private Dragon d1;
-    private Dragon d2;
-    private Dragon d3;
+    private Dragon[] dragons;
     private boolean search;
     private int dragonNumber;
 
@@ -10,12 +9,13 @@ public class Room {
 
     Room() {
         ROOM_NUMBER++;
-        Dragon d1 = new Dragon((int) (Math.random() * 5 + 1));
-        Dragon d2 = new Dragon((int) (Math.random() * 5 + 1));
-        Dragon d3 = new Dragon((int) (Math.random() * 5 + 1));
         search = false;
         dragonNumber = (int) (Math.random() * 3 + 1);
-
+        dragons = new Dragon[dragonNumber];
+        for (int i = 0; i < dragons.length; i++) {
+            Dragon dragon = new Dragon();
+            dragons[i] = dragon;
+        }
     }
 
     public static int getRoomNumber() {
@@ -23,6 +23,15 @@ public class Room {
     }
 
     public void enterRoom(Player player) {
+        System.out.println("Welcome to room number " + ROOM_NUMBER + player.getName() +
+                            "! There are " + dragonNumber + " dragons in this room.");
+    }
+
+    public void roomMenu() {
+        System.out.println("--ROOM NUMBER " + ROOM_NUMBER + "--");
+        for (int i = 0; i < dragons.length; i++) {
+            System.out.println("dragon " + (i + 1) + "- health: " + dragons[i].getHealth() + " level: " + dragons[i].getLevel());
+        }
     }
 
     public void search(Player player) {
@@ -31,7 +40,7 @@ public class Room {
                 System.out.println("You have recieved a health potion!");
                 player.setHealthPot(true);
             }
-            System.out.println("No health potions in this room.")
+            System.out.println("No health potions in this room.");
         } else {
             System.out.println("You've already searched this room!");
         }
