@@ -33,14 +33,20 @@ public class Room {
             System.out.println("dragon " + (i + 1) + "- health: " + dragons[i].getHealth() + " level: " + dragons[i].getLevel());
         }
     }
+    public void attack(Player player, int num) {
+        dragons[num - 1].recieveAttack(player);
+        player.recieveAttack(dragons[num - 1]);
+    }
 
     public void search(Player player) {
         if (search == false) {
             if ((int) (Math.random() * 3 + 1 ) > 2) {
                 System.out.println("You have recieved a health potion!");
                 player.setHealthPot(true);
+            } else {
+                System.out.println("No health potions in this room.");
             }
-            System.out.println("No health potions in this room.");
+            search = true;
         } else {
             System.out.println("You've already searched this room!");
         }

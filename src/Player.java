@@ -26,17 +26,20 @@ public class Player {
     public void setHealthPot(boolean ft) {
         healthPot = ft;
     }
+    public void useHealthPot() {}
 
     public int attack() {
         return ((int) (Math.random() * 10 + 1)) * sword.getAttack();
     }
 
-    public boolean recieveAttack(Dragon dragon) {
+    public void recieveAttack(Dragon dragon) {
         if (((int) (Math.random() * 100 + 1)) > sword.getDodge()) {
-            health-=dragon.attack();
-            return true;
+            int attack = dragon.attack();
+            health -=attack;
+            System.out.println("Dragon attacks player for " + attack + " health");
+        } else {
+            System.out.println("Dragon attack has missed!");
         }
-        return false;
     }
     public void playerMenu() {
         System.out.println(name + "- health: " + health);

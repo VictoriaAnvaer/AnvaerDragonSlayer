@@ -16,12 +16,14 @@ public class Dragon {
     public int attack() {
         return ((int) (Math.random() * 10 + 5)) * level;
     }
-    public boolean recieveAttack(Player player) {
+    public void recieveAttack(Player player) {
         if (((int) (Math.random() * 100 + 1)) > level * 20) {
-            health-=player.attack();
-            return true;
+            int attack = player.attack();
+            health-=attack;
+            System.out.println("Player attacks dragon for " + attack + " health");
+        } else {
+            System.out.println("Player attack has missed!");
         }
-        return false;
     }
     public void dragonSlain(Player player) {
         int drop = (int) (Math.random() * 4 + 1);

@@ -33,7 +33,7 @@ public class DragonSlayer {
         String name = SCANNER.nextLine();
         Player player = new Player(name);
         Room room = new Room();
-        while (player.getHealth() > 0 && Room.getRoomNumber() < 6) {
+        while (0 == 0) { //edit while loop later
             room.roomMenu();
             player.playerMenu();
             System.out.println("--MENU--");
@@ -41,20 +41,22 @@ public class DragonSlayer {
             System.out.println("2. Search room");
             System.out.println("3. Use health pot");
             System.out.println("4. Attack dragon");
-            System.out.println("5. Inspect dragon level");
-            System.out.println("6. Inspect player information");
-            System.out.println("7. Upgrades and Powerups");
+            System.out.println("5. Inspect player information");
+            System.out.println("6. Upgrades and Powerups");
             int option = SCANNER.nextInt();
             SCANNER.nextLine();
-            //ConsoleUtility.clearScreen();
             if (option == 1) {
             } else if (option == 2) {
+                room.search(player);
             } else if (option == 3) {
+                player.useHealthPot();
             } else if (option == 4) {
+                System.out.print("Dragon you would like to attack: ");
+                int dragonAttack = SCANNER.nextInt();
+                room.attack(player, dragonAttack);
             } else if (option == 5) {
-            } else if (option == 6) {
                 System.out.println(player.info());
-            } else if (option == 7) {
+            } else if (option == 6) {
 
             }
         }
