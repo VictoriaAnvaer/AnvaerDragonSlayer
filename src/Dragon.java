@@ -5,14 +5,12 @@ public class Dragon {
         health = 100;
         level = (int) (Math.random() * 3 + 1);
     }
-
     public int getHealth() {
         return health;
     }
     public int getLevel() {
         return level;
     }
-
     public int attack() {
         return ((int) (Math.random() * 10 + 5)) * level;
     }
@@ -32,15 +30,13 @@ public class Dragon {
             player.addGold(level * 10);
         } else if (drop == 2) {
             System.out.println("Dragon dropped a sword upgrade!");
-            //set sword later
+            (player.getSword()).setAttack(5);
+            (player.getSword()).setDodge(5);
         } else if (drop == 3) {
             System.out.println("Dragon dropped a health boost!");
             player.setHealthPot(true);
         } else if (drop == 4) {
             System.out.println("Dragon did not drop anything!");
         }
-
     }
-
-
 }
