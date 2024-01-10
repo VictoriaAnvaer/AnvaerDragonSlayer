@@ -51,7 +51,7 @@ public class Room {
 
     public void search(Player player) {
         if (search == false) {
-            if ((int) (Math.random() * 3 + 1 ) > 2) {
+            if ((int) (Math.random() * 3 + 1 ) > 1) {
                 System.out.println("You have recieved a health potion!");
                 player.setHealthPot(true);
             } else {

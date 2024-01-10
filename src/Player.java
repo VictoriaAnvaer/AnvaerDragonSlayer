@@ -16,6 +16,10 @@ public class Player {
         return name;
     }
 
+    public int getGold() {
+        return gold;
+    }
+
     public Sword getSword() {
         return sword;
     }
@@ -54,16 +58,9 @@ public class Player {
             System.out.println("Dragon attack has missed!");
         }
     }
-    public void upgrade() {
-        System.out.println("The following sword upgrades are available: ");
-        System.out.println("Dodge +5 : 10 Gold\nDodge +10 : 20 Gold");
-        System.out.println("Attack +5 : 10 Gold\nAttack +10 : 20 Gold");
-        // add later
-    }
     public void playerMenu() {
         System.out.println(name + "- health: " + health);
     }
-
     public String info() {
         String info = "--PLAYER--\nName: " + name;
         info+="\nHealth: " + health;

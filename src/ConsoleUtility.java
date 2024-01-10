@@ -15,4 +15,10 @@ public class ConsoleUtility {
         System.out.println("\033\143");
         System.out.flush();
     }
+
+    public static void pause() {
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {}
+    }
 }

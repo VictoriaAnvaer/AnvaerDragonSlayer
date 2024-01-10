@@ -3,10 +3,13 @@ public class DragonSlayer {
     private static final Scanner SCANNER = new Scanner(System.in);
     private Player player;
     private Room room;
+    private Shop shop;
 
     public void play() {
         mainMenu();
         player = null;
+        room = null;
+        shop = null;
     }
 
     public void mainMenu() {
@@ -32,7 +35,9 @@ public class DragonSlayer {
         String name = SCANNER.nextLine();
         Player player = new Player(name);
         Room room = new Room();
-        while (Room.getRoomNumber() < 6 || player.getHealth() > 0) { //edit while loop later
+        Shop shop = new Shop();
+        while (Room.getRoomNumber() < 6 && player.getHealth() > 0) { //edit while loop later
+            ConsoleUtility.clearScreen();
             room.roomMenu();
             player.playerMenu();
             System.out.println("--MENU--");
@@ -43,25 +48,36 @@ public class DragonSlayer {
             System.out.println("5. Inspect player information");
             int option = SCANNER.nextInt();
             SCANNER.nextLine();
-            if (option == 1) {
-                player.upgrade();
-            } else if (option == 2) {
-                room.search(player);
-            } else if (option == 3) {
-                player.useHealthPot();
-            } else if (option == 4) {
-                System.out.print("Dragon you would like to attack: ");
-                int dragonAttack = SCANNER.nextInt();
-                room.attack(player, dragonAttack);
-                if (room.dragonSlain()) {
-                    System.out.println("All dragons defeated.");
-                    room = new Room();
-                }
-            } else if (option == 5) {
-                System.out.println(player.info());
-            }
+            ConsoleUtility.clearScreen();
+            menuOption(option);
         }
         gameEnd();
+    }
+
+    public void menuOption(int option) {
+        if (option == 1) {
+            shop.shop();
+            int item = SCANNER.nextInt();
+            shop.selection(player, item);
+        } else if (option == 2) {
+            room.search(player);
+        } else if (option == 3) {
+            player.useHealthPot();
+        } else if (option == 4) {
+            room.roomMenu();
+            player.playerMenu();
+            System.out.print("-------------------\nDragon you would like to attack: ");
+            int dragonAttack = SCANNER.nextInt();
+            room.attack(player, dragonAttack);
+            if (room.dragonSlain()) {
+                System.out.println("All dragons defeated.");
+                room = new Room();
+            }
+            SCANNER.nextLine();
+        } else if (option == 5) {
+            System.out.println(player.info());
+        }
+        SCANNER.nextLine();
     }
     public void gameEnd() {
         System.out.println("Game end");
