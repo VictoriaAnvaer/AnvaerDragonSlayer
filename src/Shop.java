@@ -15,11 +15,23 @@ public class Shop {
 
     public void selection(Player player, int item) {
         if ((item == 1 || item == 2) && player.getGold() >= upgradeOne) {
-
+            player.addGold(-upgradeOne);
+            System.out.println("Your sword has been successfully upgraded.");
+            if (item == 1) {
+                player.getSword().setDodge(5);
+            } else {
+                player.getSword().setAttack(5);
+            }
         } else if ((item == 3 || item == 4) && player.getGold() >= upgradeTwo) {
-
+            player.addGold(-upgradeTwo);
+            System.out.println("Your sword has been successfully upgraded.");
+            if (item == 3) {
+                player.getSword().setDodge(10);
+            } else {
+                player.getSword().setAttack(10);
+            }
         } else {
-
+            System.out.println("Invalid selection or not enough gold!");
         }
     }
 }

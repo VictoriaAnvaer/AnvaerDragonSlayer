@@ -4,6 +4,7 @@ public class Room {
     private Dragon[] dragons;
     private boolean search;
     private int dragonNumber;
+    private String roomName;
 
     Room() {
         ROOM_NUMBER++;
@@ -14,10 +15,25 @@ public class Room {
             Dragon dragon = new Dragon();
             dragons[i] = dragon;
         }
+        if (ROOM_NUMBER == 1) {
+            roomName = "The Stone Walls";
+        } else if (ROOM_NUMBER == 2) {
+            roomName = "The Corridor";
+        } else if (ROOM_NUMBER == 3) {
+            roomName = "The Treasury";
+        } else if (ROOM_NUMBER == 4) {
+            roomName = "The Hatching Inferno";
+        } else {
+            roomName = "The Den";
+        }
     }
 
     public static int getRoomNumber() {
         return ROOM_NUMBER;
+    }
+
+    public static void resetRoomNumber() {
+        ROOM_NUMBER = 0;
     }
 
     public boolean dragonSlain() {
@@ -30,7 +46,7 @@ public class Room {
     }
 
     public void roomMenu() {
-        System.out.println("--ROOM NUMBER " + ROOM_NUMBER + "--");
+        System.out.println("--" + ROOM_NUMBER + ": " + roomName + "--");
         for (int i = 0; i < dragons.length; i++) {
             if (dragons[i] == null) {
                 System.out.println("dragon " + (i + 1) + "- SLAIN");

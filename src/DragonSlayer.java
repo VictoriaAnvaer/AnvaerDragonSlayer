@@ -49,38 +49,37 @@ public class DragonSlayer {
             int option = SCANNER.nextInt();
             SCANNER.nextLine();
             ConsoleUtility.clearScreen();
-            menuOption(option);
+            if (option == 1) {
+                shop.shop();
+                System.out.print("Select an option: ");
+                int item = SCANNER.nextInt();
+                shop.selection(player, item);
+                SCANNER.nextLine();
+            } else if (option == 2) {
+                room.search(player);
+            } else if (option == 3) {
+                player.useHealthPot();
+            } else if (option == 4) {
+                room.roomMenu();
+                player.playerMenu();
+                System.out.print("-------------------\nDragon you would like to attack: ");
+                int dragonAttack = SCANNER.nextInt();
+                room.attack(player, dragonAttack);
+                if (room.dragonSlain()) {
+                    System.out.println("All dragons defeated.");
+                    room = new Room();
+                }
+                SCANNER.nextLine();
+            } else if (option == 5) {
+                System.out.println(player.info());
+            }
+            SCANNER.nextLine();
         }
         gameEnd();
     }
-
-    public void menuOption(int option) {
-        if (option == 1) {
-            shop.shop();
-            int item = SCANNER.nextInt();
-            shop.selection(player, item);
-        } else if (option == 2) {
-            room.search(player);
-        } else if (option == 3) {
-            player.useHealthPot();
-        } else if (option == 4) {
-            room.roomMenu();
-            player.playerMenu();
-            System.out.print("-------------------\nDragon you would like to attack: ");
-            int dragonAttack = SCANNER.nextInt();
-            room.attack(player, dragonAttack);
-            if (room.dragonSlain()) {
-                System.out.println("All dragons defeated.");
-                room = new Room();
-            }
-            SCANNER.nextLine();
-        } else if (option == 5) {
-            System.out.println(player.info());
-        }
-        SCANNER.nextLine();
-    }
     public void gameEnd() {
         System.out.println("Game end");
+        Room.resetRoomNumber();
         // add results of win/loss later
         mainMenu();
     }

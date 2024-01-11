@@ -33,8 +33,8 @@ public class Dragon {
             (player.getSword()).setAttack(5);
             (player.getSword()).setDodge(5);
         } else if (drop == 3) {
-            System.out.println("Dragon dropped a health boost!");
-            player.setHealthPot(true);
+            player.addHealth(20);
+            System.out.println("Dragon dropped a health boost! Your health increased by 20.");
         } else if (drop == 4) {
             System.out.println("Dragon did not drop anything!");
         }

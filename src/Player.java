@@ -12,9 +12,6 @@ public class Player {
         healthPot = false;
         sword = new Sword();
     }
-    public String getName() {
-        return name;
-    }
 
     public int getGold() {
         return gold;
@@ -29,6 +26,9 @@ public class Player {
     }
     public void addGold(int add) {
         gold+=add;
+    }
+    public void addHealth(int add) {
+        health+=add;
     }
 
     public void setHealthPot(boolean ft) {
