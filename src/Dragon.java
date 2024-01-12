@@ -12,7 +12,7 @@ public class Dragon {
         return level;
     }
     public int attack() {
-        return ((int) (Math.random() * 10 + 5)) * level;
+        return ((int) (Math.random() * 5 + 5)) * level;
     }
     public void recieveAttack(Player player) {
         if (((int) (Math.random() * 100 + 1)) > level * 20) {

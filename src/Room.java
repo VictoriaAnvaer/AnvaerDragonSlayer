@@ -1,6 +1,6 @@
 //add room name
 public class Room {
-    static int ROOM_NUMBER = 0;
+    private static int ROOM_NUMBER = 0;
     private Dragon[] dragons;
     private boolean search;
     private int dragonNumber;
@@ -46,12 +46,12 @@ public class Room {
     }
 
     public void roomMenu() {
-        System.out.println("--" + ROOM_NUMBER + ": " + roomName + "--");
+        System.out.println(ConsoleUtility.PURPLE + "--" + ROOM_NUMBER + ": " + roomName + "--" + ConsoleUtility.RESET);
         for (int i = 0; i < dragons.length; i++) {
             if (dragons[i] == null) {
-                System.out.println("dragon " + (i + 1) + "- SLAIN");
+                System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- SLAIN");
             } else {
-                System.out.println("dragon " + (i + 1) + "- level: " + dragons[i].getLevel() + " health: " + dragons[i].getHealth());
+                System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- level: " + dragons[i].getLevel() + " health: " + dragons[i].getHealth());
             }
         }
     }
@@ -71,7 +71,7 @@ public class Room {
                 System.out.println("You have recieved a health potion!");
                 player.setHealthPot(true);
             } else {
-                System.out.println("No health potions in this room.");
+                System.out.println(ConsoleUtility.RED + "No" + ConsoleUtility.RESET + " health potions in this room.");
             }
             search = true;
         } else {

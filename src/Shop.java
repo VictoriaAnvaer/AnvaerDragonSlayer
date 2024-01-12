@@ -7,7 +7,7 @@ public class Shop {
         upgradeTwo = 20;
     }
     public void shop() {
-        System.out.println("The following sword upgrades are available: ");
+        System.out.println(ConsoleUtility.CYAN  + "The following sword upgrades are available: " + ConsoleUtility.RESET);
         System.out.println("1. Dodge +5 : 10 Gold\n2. Dodge +10 : 20 Gold");
         System.out.println("2. Attack +5 : 10 Gold\n4. Attack +10 : 20 Gold");
         // add later

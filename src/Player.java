@@ -1,4 +1,5 @@
 public class Player {
+    private static int HIGHSCORE = 0;
     private String name;
     private int health;
     private int gold;
@@ -11,6 +12,10 @@ public class Player {
         gold = 0;
         healthPot = false;
         sword = new Sword();
+    }
+
+    public static int getHIGHSCORE() {
+        return HIGHSCORE;
     }
 
     public int getGold() {
@@ -59,16 +64,21 @@ public class Player {
         }
     }
     public void playerMenu() {
-        System.out.println(name + "- health: " + health);
+        System.out.println("\uD83E\uDDD9 " + name + "- health: " + health);
     }
     public String info() {
-        String info = "--PLAYER--\nName: " + name;
+        String info = ConsoleUtility.PURPLE + "--PLAYER--" + ConsoleUtility.RESET + "\nName: " + name;
         info+="\nHealth: " + health;
-        info+="\nGold: " + gold;
+        info+= ConsoleUtility.YELLOW + "\nGold: " + gold + ConsoleUtility.RESET;
         info+="\nHealth Potion: " + healthPot;
-        info+="\n--SWORD--\n";
+        info+= ConsoleUtility.PURPLE + "\n--SWORD--\n" + ConsoleUtility.RESET;
         info+="Dodge: " + sword.getDodge();
         info+="\nAttack: " + sword.getAttack();
         return info;
+    }
+    public void calculateHighScore() {
+        if (gold > HIGHSCORE) {
+            HIGHSCORE = gold;
+        }
     }
 }
