@@ -3,6 +3,7 @@ public class Player {
     private String name;
     private int health;
     private int gold;
+    private int totGold;
     private boolean healthPot;
     private Sword sword;
 
@@ -10,6 +11,7 @@ public class Player {
         this.name = name;
         health = 100;
         gold = 0;
+        totGold = 0;
         healthPot = false;
         sword = new Sword();
     }
@@ -29,15 +31,17 @@ public class Player {
     public int getHealth() {
         return health;
     }
+    public void setHealthPot(boolean ft) {
+        healthPot = ft;
+    }
     public void addGold(int add) {
         gold+=add;
+        if (add > 0) {
+            totGold+=add;
+        }
     }
     public void addHealth(int add) {
         health+=add;
-    }
-
-    public void setHealthPot(boolean ft) {
-        healthPot = ft;
     }
     public void useHealthPot() {
         if (healthPot) {
@@ -48,7 +52,7 @@ public class Player {
             healthPot = false;
             System.out.println("Your health is now " + health);
         } else {
-            System.out.println("You currently are not carrying a health pot.");
+            System.out.println("You currently are not carrying a health potion.");
         }
     }
     public int attack() {
@@ -77,8 +81,8 @@ public class Player {
         return info;
     }
     public void calculateHighScore() {
-        if (gold > HIGHSCORE) {
-            HIGHSCORE = gold;
+        if (totGold > HIGHSCORE) {
+            HIGHSCORE = totGold;
         }
     }
 }

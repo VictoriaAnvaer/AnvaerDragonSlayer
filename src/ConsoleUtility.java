@@ -18,7 +18,7 @@ public class ConsoleUtility {
 
     public static void pause() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         } catch (Exception e) {}
     }
 }

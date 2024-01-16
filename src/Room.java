@@ -15,6 +15,7 @@ public class Room {
             Dragon dragon = new Dragon();
             dragons[i] = dragon;
         }
+        // sets name of room based on the room position
         if (ROOM_NUMBER == 1) {
             roomName = "The Stone Walls";
         } else if (ROOM_NUMBER == 2) {
@@ -36,7 +37,7 @@ public class Room {
         ROOM_NUMBER = 0;
     }
 
-    public boolean dragonSlain() {
+    public boolean dragonSlain() { // checks if all dragons are slain by checking if all dragons in array are null
         for (int i = 0; i < dragons.length; i++) {
             if (dragons[i] != null) {
                 return false;
@@ -48,7 +49,7 @@ public class Room {
     public void roomMenu() {
         System.out.println(ConsoleUtility.PURPLE + "--" + ROOM_NUMBER + ": " + roomName + "--" + ConsoleUtility.RESET);
         for (int i = 0; i < dragons.length; i++) {
-            if (dragons[i] == null) {
+            if (dragons[i] == null) { //checks if dragon is null first - otherwise there will be an error + to display slain dragons as null
                 System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- SLAIN");
             } else {
                 System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- level: " + dragons[i].getLevel() + " health: " + dragons[i].getHealth());
@@ -57,11 +58,13 @@ public class Room {
     }
     public void attack(Player player, int num) {
         dragons[num - 1].recieveAttack(player);
-        player.recieveAttack(dragons[num - 1]);
-        if (dragons[num - 1].getHealth() <= 0) {
-            System.out.println("Dragon has been slain!");
+        ConsoleUtility.pause();
+        if (dragons[num - 1].getHealth() <=0) { // ensures that the dragon only attacks the player if the player had not slain it
+            player.recieveAttack(dragons[num - 1]);
+        } else {
+            System.out.println(ConsoleUtility.RED + "Dragon has been slain!" + ConsoleUtility.RESET);
             dragons[num - 1].dragonSlain(player);
-            dragons[num - 1] = null;
+            dragons[num - 1] = null; //sets dragon to null when they are slain so that displaying menu is easier
         }
     }
 

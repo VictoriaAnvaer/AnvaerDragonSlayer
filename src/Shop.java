@@ -8,12 +8,12 @@ public class Shop {
     }
     public void shop() {
         System.out.println(ConsoleUtility.CYAN  + "The following sword upgrades are available: " + ConsoleUtility.RESET);
-        System.out.println("1. Dodge +5 : 10 Gold\n2. Dodge +10 : 20 Gold");
-        System.out.println("2. Attack +5 : 10 Gold\n4. Attack +10 : 20 Gold");
-        // add later
+        System.out.println("1. Dodge +5 : 10 Gold\n2. Attack +5 : 10 Gold");
+        System.out.println("3. Dodge +10 : 20 Gold\n4. Attack +10 : 20 Gold");
     }
 
-    public void selection(Player player, int item) {
+    public void selection(Player player, int item) { // item is user input
+        ConsoleUtility.pause();
         if ((item == 1 || item == 2) && player.getGold() >= upgradeOne) {
             player.addGold(-upgradeOne);
             System.out.println("Your sword has been successfully upgraded.");

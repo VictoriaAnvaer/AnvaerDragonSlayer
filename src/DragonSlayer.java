@@ -24,35 +24,39 @@ public class DragonSlayer {
         if (option == 1) {
             Menu();
         } else if (option == 2) {
+            System.out.println("Dragon Slayer is a single-player game where you control a character and move from room to room defeating enemies in a dragon's lair. There are a total of five rooms. Good luck!");
             SCANNER.nextLine();
             mainMenu();
         } else if (option == 3) {
-            System.out.println("The current top score is " + Player.getHIGHSCORE() + ConsoleUtility.YELLOW + " gold" + ConsoleUtility.RESET);
+            System.out.println("The current top score is " + ConsoleUtility.YELLOW + Player.getHIGHSCORE() + " gold" + ConsoleUtility.RESET);
             SCANNER.nextLine();
             mainMenu();
         } else if (option == 4) {
             System.out.println("Thank you for playing.");
         }
     }
-    public void Menu() {
+    private void Menu() {
+        ConsoleUtility.pause();
         System.out.print("Enter your name: ");
         String name = SCANNER.nextLine();
         Player player = new Player(name);
-        Room room = new Room();
-        Shop shop = new Shop();
-        while (Room.getRoomNumber() < 6 && player.getHealth() > 0) {
+        room = new Room();
+        shop = new Shop();
+        while (Room.getRoomNumber() < 6 && player.getHealth() > 0) { // either when player clears all rooms or loses all health the game stops
             ConsoleUtility.clearScreen();
+            ConsoleUtility.pause();
             room.roomMenu();
             player.playerMenu();
             System.out.println(ConsoleUtility.PURPLE + "--MENU--" + ConsoleUtility.RESET);
             System.out.println("1. Upgrades and Powerups");
             System.out.println("2. Search room");
-            System.out.println("3. Use health pot");
+            System.out.println("3. Use health potion");
             System.out.println("4." + ConsoleUtility.RED + " Attack dragon" + ConsoleUtility.RESET);
             System.out.println("5. Inspect player information");
             int option = SCANNER.nextInt();
             SCANNER.nextLine();
             ConsoleUtility.clearScreen();
+            ConsoleUtility.pause();
             if (option == 1) {
                 shop.shop();
                 System.out.print("Select an option: ");
@@ -65,7 +69,8 @@ public class DragonSlayer {
                 player.useHealthPot();
             } else if (option == 4) {
                 room.roomMenu();
-                player.playerMenu();
+                player.playerMenu(); // prints out menu again so that player is able to see what dragon to attack
+                ConsoleUtility.pause();
                 System.out.print(ConsoleUtility.PURPLE + "-------------------" + ConsoleUtility.RESET + "\nDragon you would like to attack: ");
                 int dragonAttack = SCANNER.nextInt();
                 room.attack(player, dragonAttack);
@@ -79,19 +84,19 @@ public class DragonSlayer {
             }
             SCANNER.nextLine();
         }
-        gameEnd();
+        gameEnd(player);
     }
-    public void gameEnd() {
+    private void gameEnd(Player player) {
         ConsoleUtility.clearScreen();
         if (player.getHealth() <= 0) {
-            System.out.print("You have died! ");
+            System.out.print(ConsoleUtility.RED + "You have died! ");
         } else {
             player.calculateHighScore();
-            System.out.print("You have defeated all the dragons in all the rooms! ");
+            System.out.print(ConsoleUtility.GREEN + "You have defeated all the dragons in all the rooms! ");
         }
-        System.out.println("Game end");
-        Room.resetRoomNumber();
-        // add results of win/loss later
-        mainMenu();
+        ConsoleUtility.pause();
+        System.out.println(ConsoleUtility.RESET + "Game end");
+        Room.resetRoomNumber(); // resets room numbers so that it does not go beyond six
+        mainMenu(); // goes back to main menu in order to loop the program
     }
 }
