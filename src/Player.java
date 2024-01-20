@@ -3,7 +3,7 @@ public class Player {
     private String name;
     private int health;
     private int gold;
-    private int totGold;
+    private int totGold; // for high score tracker
     private boolean healthPot;
     private Sword sword;
 
@@ -38,6 +38,8 @@ public class Player {
         gold+=add;
         if (add > 0) {
             totGold+=add;
+        } else {
+            totGold-=add;
         }
     }
     public void addHealth(int add) {
@@ -56,7 +58,7 @@ public class Player {
         }
     }
     public int attack() {
-        return ((int) (Math.random() * 10 + 1)) * sword.getAttack();
+       return ((int) (Math.random() * 10 + 1)) * sword.getAttack();
     }
     public void recieveAttack(Dragon dragon) {
         if (((int) (Math.random() * 100 + 1)) > sword.getDodge()) {
@@ -68,7 +70,7 @@ public class Player {
         }
     }
     public void playerMenu() {
-        System.out.println("\uD83E\uDDD9 " + name + "- health: " + health);
+        System.out.println(name + "- health: " + health);
     }
     public String info() {
         String info = ConsoleUtility.PURPLE + "--PLAYER--" + ConsoleUtility.RESET + "\nName: " + name;

@@ -50,16 +50,16 @@ public class Room {
         System.out.println(ConsoleUtility.PURPLE + "--" + ROOM_NUMBER + ": " + roomName + "--" + ConsoleUtility.RESET);
         for (int i = 0; i < dragons.length; i++) {
             if (dragons[i] == null) { //checks if dragon is null first - otherwise there will be an error + to display slain dragons as null
-                System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- SLAIN");
+                System.out.println("dragon " + (i + 1) + "- SLAIN");
             } else {
-                System.out.println("\uD83D\uDC09 dragon " + (i + 1) + "- level: " + dragons[i].getLevel() + " health: " + dragons[i].getHealth());
+                System.out.println("dragon " + (i + 1) + "- level: " + dragons[i].getLevel() + " health: " + dragons[i].getHealth());
             }
         }
     }
     public void attack(Player player, int num) {
         dragons[num - 1].recieveAttack(player);
         ConsoleUtility.pause();
-        if (dragons[num - 1].getHealth() <=0) { // ensures that the dragon only attacks the player if the player had not slain it
+        if (dragons[num - 1].getHealth() > 0) { // ensures that the dragon only attacks the player if the player had not slain it
             player.recieveAttack(dragons[num - 1]);
         } else {
             System.out.println(ConsoleUtility.RED + "Dragon has been slain!" + ConsoleUtility.RESET);
