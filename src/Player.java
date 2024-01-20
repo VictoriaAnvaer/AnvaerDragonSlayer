@@ -38,8 +38,6 @@ public class Player {
         gold+=add;
         if (add > 0) {
             totGold+=add;
-        } else {
-            totGold-=add;
         }
     }
     public void addHealth(int add) {
